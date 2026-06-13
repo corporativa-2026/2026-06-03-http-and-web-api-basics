@@ -1,16 +1,15 @@
 import { createServer } from 'node:http';
 
-// criar um objeto server através da função createServer do módulo http
+// criar um objeto server através da função createServer do módulo node:http
 const server = createServer();
 
-// O objeto server é um EventEmitter, ou seja,
-// ele emite eventos. O evento 'request' é
-// emitido toda vez que o servidor recebe uma requisição.
+// O objeto server é um EventEmitter, ou seja, ele emite eventos.
+// O evento 'request' é emitido toda vez que o servidor recebe uma requisição.
 server.on('request', function(request, response) {
   // se a URL da requisição for '/hello', ex.: localhost:11111/hello
   if (request.url === '/hello') {
-    response
-      .setHeader('content-type', 'text/plain; charset=utf8');
+    // comente essa linha para ver a diferença na resposta
+    response.setHeader('content-type', 'text/plain; charset=utf8');
     response.end('👋');
   // para qualquer outra URL, o servidor responde com um status code 404 NOT FOUND
   } else {
@@ -33,5 +32,4 @@ server.listen(port, function() {
   console.log('Escutando na porta', port);
 }); // 1024 < porta < 65536
 
-// abrir o navegador e acessar
-// http://localhost:11111/hello para ver a resposta
+// abrir o navegador e acessar: http://localhost:11111/hello para ver a resposta (CTRL+ clique no link :)
